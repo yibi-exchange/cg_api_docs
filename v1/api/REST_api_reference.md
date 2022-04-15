@@ -3,20 +3,20 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Market API](#market-api)
-  - [GET /v1/pairs](#get-v1pairs)
-  - [GET /v1/tickers](#get-v1tickers)
-  - [GET /v1/orderbook](#get-v1orderbook)
-  - [GET /v1/historical_trades](#get-v1historical_trades)
+  - [GET /cg/pairs](#get-v1pairs)
+  - [GET /cg/tickers](#get-v1tickers)
+  - [GET /cg/orderbook](#get-v1orderbook)
+  - [GET /cg/historical_trades](#get-v1historical_trades)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Market API
 
-## GET /v1/pairs  
+## GET /cg/pairs  
 Get the list of all exchange pairs.
 
 Request: None
-
+Url: https://api.yibi.co/cg/pairs
 Response: Object[]
 
 Name | Data type | Description 
@@ -44,47 +44,59 @@ Data example:
 }
 ```
 
-## GET /v1/tickers  
+## GET /cg/tickers  
 Get a 24-hour pricing and volume summary for each market pair available on the exchange.
 
 Request: None
-
+Url: https://api.yibi.co/cg/tickers
 Response: Object[]
 
 Name | Data type | Description 
 ------------ | ------------ | ------------
-tickerId | string | Identifier of a ticker with delimiter to separate base_target, eg. BTC_USDT.
-lastPrice | decimal | Last transacted price of base currency based on given target currency
-baseVolume | decimal | 24-hour trading volume denoted in BASE currency
-targetVolume | decimal | 24 hour trading volume denoted in TARGET currency
-isFrozen | integer | Indicates if the market is currently enabled (0) or disabled (1).
+ticker_id | string | Identifier of a ticker with delimiter to separate base_target, eg. BTC_USDT.
+base_currency	| string |	Symbol/currency code of base pair, eg. BTC
+target_currency |	string	| Symbol/currency code of target pair, eg. USDT
+last_price | decimal | Last transacted price of base currency based on given target currency
+base_volume | decimal | 24-hour trading volume denoted in BASE currency
+target_volume | decimal | 24 hour trading volume denoted in TARGET currency
+bid |	string |	Current highest bid price
+ask |	string |	Current lowest ask price
+high |	string |	Rolling 24-hours highest transaction price
+low	| string |	Rolling 24-hours lowest transaction price
                       
 Data example:
 ```json
 {
-    "code":"1",
-    "success":true,
-    "msg":null,
-    "data":[
-        {
-            "ticker_id":"BTC_USDT",
-            "last_price":"42065.72",
-            "base_currency":"1084.92",
-            "target_currency":"45448520.44",
-            "isFrozen":0
-        },
-        {
-            "ticker_id":"ETH_USDT",
-            "last_price":"3147.16",
-            "base_currency":"9659.14",
-            "target_currency":"30085798.27",
-            "isFrozen":0
-        }
-    ]
+	"code": "1",
+	"success": true,
+	"msg": null,
+	"data": [{
+		"ticker_id": "BTC_USDT",
+		"base_currency": "BTC",
+		"target_currency": "USDT",
+		"last_price": "40047.48",
+		"base_volume": "4.09582",
+		"target_volume": "163607.9687558",
+		"bid": "40046.82",
+		"ask": "40050.7",
+		"high": "41208.32",
+		"low": "39586.45"
+	}, {
+		"ticker_id": "ETH_USDT",
+		"base_currency": "ETH",
+		"target_currency": "USDT",
+		"last_price": "3021.59",
+		"base_volume": "46.4912",
+		"target_volume": "140262.58768",
+		"bid": "3021.63",
+		"ask": "3021.73",
+		"high": "3050.12",
+		"low": "2977.73"
+	}]
 }
 ```
 
-## GET /v1/orderbook
+## GET /cg/orderbook
 
 Order book depth details
 
@@ -95,11 +107,13 @@ Name | Data type | Description
 tickerId | string | A pair such as "BTC_USDT"
 depth | integer | (optional)Order depth quantity：[100, 200, 500...]. Depth = 100 means 50 for each buy/sell.
 
+Url: https://api.yibi.co/cg/orderbook?ticker_id=BTC_USDT&depth=100
+
 Response: Object[]
 
 Name | Data type | Description 
 ------------ | ------------ | ------------
-tickerId | string | A pair such as "BTC_USDT"
+ticker_id | string | A pair such as "BTC_USDT"
 timestamp | timestamp | Unix timestamp in milliseconds for when the last updated time occurred.
 bids | decimal | An array containing 2 elements. The offer price and quantity for each bid order
 asks | decimal | An array containing 2 elements. The ask price and quantity for each ask order
@@ -107,16 +121,13 @@ asks | decimal | An array containing 2 elements. The ask price and quantity for 
 
 
 Data example:
-```
-/* GET /v1/orderBook?tickerId=BTC_USDT */
-```
 ```json
 {
 "code": "1",
 "success": true,
 "msg": null,
 "data": {
-    "tickerId": "BTC_USDT",
+    "ticker_id": "BTC_USDT",
     "timestamp": "1639473000000",
     "bids": [
         ["48735.05", "0.200128"],
@@ -130,7 +141,7 @@ Data example:
 }
 ```
 
-## GET /v1/historical_trades
+## GET /cg/historical_trades
 
 Transaction records
 
@@ -138,13 +149,16 @@ Request:
 
 Name | Data type | Description 
 ------------ | ------------ | ------------
-tickerId | String | A pair such as "BTC_USDT"
+ticker_id | String | A pair such as "BTC_USDT"
+type | String | To indicate nature of trade - buy/sell
+
+Url: https://api.yibi.co/cg/historical_trades?ticker_id=BTC_USDT
 
 Response: Object
 
 Name | Data type | Description 
 ------------ | ------------ | ------------
-tradeId | int | Records id
+trade_id | int | Records id
 price | decimal | Transaction price in base pair volume.
 base_volume | decimal | Transaction amount in base pair volume.
 target_volume | decimal | Transaction amount in target pair volume.
