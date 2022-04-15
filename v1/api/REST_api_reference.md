@@ -170,9 +170,6 @@ trade_timestamp | timestamp | Unix timestamp in milliseconds for when the transa
 type | string | Used to determine the type of the transaction that was completed. Buy – Identifies an ask that was removed from the order book. Sell – Identifies a bid that was removed from the order book.
                                                                                                 
 Data example:
-```
-/* GET /v1/historicalTrades?tickerId=BTC_USDT */
-```
 ```json
 {
 "code": "1",
