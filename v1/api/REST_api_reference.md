@@ -16,7 +16,9 @@
 Get the list of all exchange pairs.
 
 Request: None
+
 Url: https://api.yibi.co/cg/pairs
+
 Response: Object[]
 
 Name | Data type | Description 
@@ -48,7 +50,9 @@ Data example:
 Get a 24-hour pricing and volume summary for each market pair available on the exchange.
 
 Request: None
+
 Url: https://api.yibi.co/cg/tickers
+
 Response: Object[]
 
 Name | Data type | Description 
