@@ -3,10 +3,10 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Market API](#market-api)
-  - [GET /cg/pairs](#get-v1pairs)
-  - [GET /cg/tickers](#get-v1tickers)
-  - [GET /cg/orderbook](#get-v1orderbook)
-  - [GET /cg/historical_trades](#get-v1historical_trades)
+  - [GET /cg/pairs](#get-cgpairs)
+  - [GET /cg/tickers](#get-cgtickers)
+  - [GET /cg/orderbook](#get-cgorderbook)
+  - [GET /cg/historical_trades](#get-cghistorical_trades)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
