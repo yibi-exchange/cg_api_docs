@@ -1,4 +1,4 @@
-## API description
+## YIBI openapi rest interface for CGK
 
 ### Exchange
 
