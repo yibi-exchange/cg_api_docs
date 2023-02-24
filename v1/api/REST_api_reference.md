@@ -3,10 +3,10 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Market API](#market-api)
-  - [GET /pairs](#get-cgpairs)
-  - [GET /tickers](#get-cgtickers)
-  - [GET /orderbook](#get-cgorderbook)
-  - [GET /historical_trades](#get-cghistorical_trades)
+  - [GET /pairs](#get-pairs)
+  - [GET /tickers](#get-tickers)
+  - [GET /orderbook](#get-orderbook)
+  - [GET /historical_trades](#get-historical_trades)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -41,7 +41,7 @@ Data example:
 }]
 ```
 
-## GET /cg/tickers  
+## GET /tickers  
 Get a 24-hour pricing and volume summary for each market pair available on the exchange.
 
 Request: None
