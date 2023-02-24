@@ -3,21 +3,21 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Market API](#market-api)
-  - [GET /cg/pairs](#get-cgpairs)
-  - [GET /cg/tickers](#get-cgtickers)
-  - [GET /cg/orderbook](#get-cgorderbook)
-  - [GET /cg/historical_trades](#get-cghistorical_trades)
+  - [GET /pairs](#get-cgpairs)
+  - [GET /tickers](#get-cgtickers)
+  - [GET /orderbook](#get-cgorderbook)
+  - [GET /historical_trades](#get-cghistorical_trades)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Market API
 
-## GET /cg/pairs  
+## GET /pairs  
 Get the list of all exchange pairs.
 
 Request: None
 
-Url: https://api.yibi.co/cg/pairs
+Url: https://api.yibi.co/cg/v1/pairs
 
 Response: Object[]
 
@@ -30,11 +30,7 @@ target | string | Symbol/currency code of the target crypto asset, eg. USDT
 
 Data example:
 ```json
-{
-"code": "1",
-"success": true,
-"msg": null,
-"data": [{
+[{
     "ticker_id": "ETH_USDT",
     "base": "ETH",
     "target": "USDT"
@@ -42,8 +38,7 @@ Data example:
     "ticker_id": "BTC_USDT",
     "base": "BTC",
     "target": "USDT"
-  }]
-}
+}]
 ```
 
 ## GET /cg/tickers  
@@ -51,7 +46,7 @@ Get a 24-hour pricing and volume summary for each market pair available on the e
 
 Request: None
 
-Url: https://api.yibi.co/cg/tickers
+Url: https://api.yibi.co/cg/v1/tickers
 
 Response: Object[]
 
@@ -70,11 +65,7 @@ low	| string |	Rolling 24-hours lowest transaction price
                       
 Data example:
 ```json
-{
-	"code": "1",
-	"success": true,
-	"msg": null,
-	"data": [{
+[{
 		"ticker_id": "BTC_USDT",
 		"base_currency": "BTC",
 		"target_currency": "USDT",
@@ -96,11 +87,10 @@ Data example:
 		"ask": "3021.73",
 		"high": "3050.12",
 		"low": "2977.73"
-	}]
-}
+}]
 ```
 
-## GET /cg/orderbook
+## GET /orderbook
 
 Order book depth details
 
@@ -111,7 +101,7 @@ Name | Data type | Description
 tickerId | string | A pair such as "BTC_USDT"
 depth | integer | (optional)Order depth quantity：[100, 200, 500...]. Depth = 100 means 50 for each buy/sell.
 
-Url: https://api.yibi.co/cg/orderbook?ticker_id=BTC_USDT&depth=100
+Url: https://api.yibi.co/cg/v1/orderbook?ticker_id=BTC_USDT&depth=100
 
 Response: Object[]
 
@@ -127,10 +117,6 @@ asks | decimal | An array containing 2 elements. The ask price and quantity for 
 Data example:
 ```json
 {
-"code": "1",
-"success": true,
-"msg": null,
-"data": {
     "ticker_id": "BTC_USDT",
     "timestamp": "1639473000000",
     "bids": [
@@ -141,11 +127,10 @@ Data example:
         ["48735.06", "0.203296"],
         ["48735.07", "0.108152"]
      ]
-  }
 }
 ```
 
-## GET /cg/historical_trades
+## GET /historical_trades
 
 Transaction records
 
@@ -156,7 +141,7 @@ Name | Data type | Description
 ticker_id | String | A pair such as "BTC_USDT"
 type | String | To indicate nature of trade - buy/sell
 
-Url: https://api.yibi.co/cg/historical_trades?ticker_id=BTC_USDT
+Url: https://api.yibi.co/cg/v1/historical_trades?ticker_id=BTC_USDT
 
 Response: Object
 
@@ -172,10 +157,6 @@ type | string | Used to determine the type of the transaction that was completed
 Data example:
 ```json
 {
-"code": "1",
-"success": true,
-"msg": null,
-"data": {
     "buy": [{
         "trade_id": 187317363,
         "price": 293392.99,
@@ -192,6 +173,5 @@ Data example:
         "trade_timestamp": 1639470624000,
         "type": "sell"
     }]
-  }
 }
 ```
